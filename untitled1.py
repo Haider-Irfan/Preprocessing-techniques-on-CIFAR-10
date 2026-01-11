@@ -29,7 +29,7 @@ def preprocess_image(img):
 
 
 
-df = pd.read_csv("C:/Users/IAT/Documents/archive (1)/train.csv")
+df = pd.read_csv("path/train.csv")
 
 
 IMG_INDEX = 0
@@ -99,3 +99,4 @@ plt.title("Pixel Difference Histogram")
 plt.xlabel("Difference Value")
 plt.ylabel("Count")
 plt.show()
+
