@@ -1,49 +1,100 @@
-# GPT-2 Sentiment Analysis using Fine-Tuning
+# CIFAR-10 Image Preprocessing & Visualization Pipeline
 
-## 📌 Overview
-This project fine-tunes a GPT-2 (DistilGPT-2) language model for sentiment analysis on real-world Twitter data. The model learns to generate sentiment labels (Positive, Neutral, Negative) based on input sentences using a prompt-based learning approach.
+## Overview
+This project demonstrates a complete **image preprocessing pipeline** on the CIFAR-10 dataset using Python, OpenCV, NumPy, and Matplotlib. It focuses on understanding how different preprocessing techniques affect image quality and pixel distributions through **visual comparison, histograms, and difference analysis**.
 
-## Objective
-To explore the use of generative language models (GPT-2) for sentiment classification by framing the task as a text-generation problem rather than a traditional classifier.
+The project is designed to support **computer vision and deep learning workflows**, especially before feeding images into CNN models.
+
+---
+
+## Objectives
+- Load CIFAR-10 images from CSV format
+- Reconstruct RGB images from raw pixel values
+- Apply and visualize common image preprocessing techniques
+- Analyze pixel distribution changes using histograms
+- Measure preprocessing impact using difference heatmaps
+
+---
 
 ## Technologies Used
 - Python
-- PyTorch
-- Hugging Face Transformers
-- GPT-2 (DistilGPT-2)
-- NLTK
-- Scikit-learn
-- Google Colab (GPU)
+- NumPy
+- Pandas
+- OpenCV
+- Matplotlib
+
+---
 
 ## Dataset
-- **Dataset:** TweetEval – Sentiment Analysis
-- **Classes:** Positive, Neutral, Negative
-- **Samples Used:** 15,000 tweets
-- **Source:** Hugging Face Datasets
+- **Dataset:** CIFAR-10 (CSV format)
+- **Image Size:** 32×32 RGB
+- **Classes:** 10 object categories
+- **Input Format:**  
+  - Column 0 → Label  
+  - Columns 1–3072 → Pixel values (R, G, B channels)
 
-## Methodology
-1. Text preprocessing (cleaning, tokenization, stopword removal, stemming)
-2. Prompt-based formatting:
-3. Fine-tuning DistilGPT-2 using causal language modeling
-4. Inference via text generation
-5. Evaluation using validation accuracy
+---
 
-## Results
-- Validation Accuracy (sample-based): ~XX%
-- Model successfully generates correct sentiment labels for unseen sentences
+## Preprocessing Techniques Implemented
+The following **five preprocessing steps** are applied sequentially:
+
+1. **Resizing**  
+   - Converts images from `32×32` to `64×64`
+
+2. **Normalization**  
+   - Scales pixel values to range `[0, 1]`
+
+3. **Denoising**  
+   - Gaussian Blur to reduce noise
+
+4. **Contrast Enhancement**  
+   - Pixel intensity scaling using alpha factor
+
+5. **Data Augmentation**  
+   - Horizontal flip  
+   - 90° rotation
+
+---
+
+## Visual Analysis
+The project provides:
+- Side-by-side comparison of original vs processed images
+- Pixel intensity histograms before and after preprocessing
+- Difference heatmaps between original and processed images
+- Pixel-wise difference distribution plots
+
+These visualizations help in understanding how preprocessing transforms image data.
+
+---
+
+## Pipeline Structure
+
+### File 1: Step-by-Step Visualization
+- Loads a single CIFAR-10 image
+- Applies preprocessing **one step at a time**
+- Displays:
+  - Original image
+  - Processed image
+  - Histograms for both
+
+### File 2: Unified Preprocessing Function
+- Implements all preprocessing steps inside a reusable function
+- Compares original and processed images
+- Generates:
+  - Difference heatmap
+  - Difference histogram
+
+---
 
 ## How to Run
 
-### Install dependencies
+### 1️Install dependencies
 ```bash
+pip install pandas numpy matplotlib opencv-python
 
-pip install -r requirements.txt
+Update the CSV path inside the script:
 
-Train the model
-Run the notebook:
+df = pd.read_csv("path/to/train.csv")
 
-notebooks/gpt2-training-sentiment.ipynb
-
-Inference Example
-predict_sentiment("I really enjoyed this product!")
-
+Run the script
+python cifar10_preprocessing.py
