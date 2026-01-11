@@ -1,7 +1,5 @@
-transformers
-datasets
-torch
-nltk
-scikit-learn
+dataset
+numpy
+matplotlib.pyplot
+cv2
 pandas
-tqdm
