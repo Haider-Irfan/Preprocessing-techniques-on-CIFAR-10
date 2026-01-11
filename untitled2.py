@@ -6,7 +6,7 @@ import cv2
 
 # LOAD CIFAR-10 CSV IMAGE
 
-df = pd.read_csv("C:/Users/IAT/Documents/archive (1)/train.csv")
+df = pd.read_csv("path/train.csv")
 
 IMG_INDEX = 0
 row = df.iloc[IMG_INDEX].values
@@ -76,3 +76,4 @@ show_side_by_side("CONTRAST ENHANCEMENT", contrast_img)
 aug_img = cv2.flip(img_original, 1)
 aug_img = cv2.rotate(aug_img, cv2.ROTATE_90_CLOCKWISE)
 show_side_by_side("AUGMENTATION (Flip + Rotate)", aug_img)
+
